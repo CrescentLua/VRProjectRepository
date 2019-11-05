@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Location1Video.unity
     guid: b60d9928ea455ec43a04e6f8449e1296
   - enabled: 1
+    path: Assets/Scenes/Location2Video1.unity
+    guid: f6148e3dcc08b19458f48bc734801f51
+  - enabled: 1
+    path: Assets/Scenes/Location2Video2.unity
+    guid: bb2e893a59bcde342b4b68b802ed0942
+  - enabled: 1
     path: Assets/Scenes/LevelTest.unity
     guid: 1a4b7a6237fdb01459fff0ee21e51733
   - enabled: 1

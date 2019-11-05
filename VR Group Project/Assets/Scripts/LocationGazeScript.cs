@@ -16,7 +16,9 @@ public class LocationGazeScript : MonoBehaviour
     public float delay;
     float timer;
     float Video1Timer;
-    float Video1scaleFactor; 
+    float Video1scaleFactor;
+    float Video2Timer;
+    float Video2scaleFactor; 
     float scaleFactor;
     float maximumFOV;
     float minFOV; 
@@ -24,14 +26,16 @@ public class LocationGazeScript : MonoBehaviour
     Transform camera;
 
     public Image ProgressBar;
-    public Image Video1ProgressBar; 
+    public Image Video1ProgressBar;
+    public Image Video2ProgressBar; 
 
     public GameObject MainPanel;
-    public GameObject VideoPanel1;
-    public GameObject VideoPanel2; 
+    public GameObject FirstPanel;
+    public GameObject SecondPanel; 
     public GameObject Exit;
 
-    public Text Video1ToLoad; 
+    public Text Video1ToLoad;
+    public Text Video2ToLoad; 
 
     AudioSource ReadInfo; 
 
@@ -54,20 +58,26 @@ public class LocationGazeScript : MonoBehaviour
             ProgressBar = GameObject.Find("Loc/DoorExit/Canvas/Panel/ProgressBar").GetComponent<Image>();
         }
 
-        if(GameObject.Find("Loc/Canvas/Video1Panel")) 
+        if(GameObject.Find("Loc/Canvas/FirstPanel")) 
         {
-            VideoPanel1 = GameObject.Find("Loc/Canvas/Video1Panel");
+            FirstPanel = GameObject.Find("Loc/Canvas/FirstPanel");
         }
 
-        if (GameObject.Find("Loc/Canvas/Video1Panel/Video1Progress"))
+        if (GameObject.Find("Loc/Canvas/SecondPanel"))
         {
-            Video1ProgressBar = GameObject.Find("Loc/Canvas/Video1Panel/Video1Progress").GetComponent<Image>();
+            SecondPanel = GameObject.Find("Loc/Canvas/SecondPanel");
         }
 
-        if (GameObject.Find("Loc/Canvas/Video1Panel/SceneToLoad"))
+        if (GameObject.Find("Loc/Canvas/FirstPanel/SceneToLoad"))
         {
-            Video1ToLoad = GameObject.Find("Loc/Canvas/Video1Panel/SceneToLoad").GetComponent<Text>();
+            Video1ToLoad = GameObject.Find("Loc/Canvas/FirstPanel/SceneToLoad").GetComponent<Text>();
         }
+
+        if (GameObject.Find("Loc/Canvas/SecondPanel/SceneToLoad"))
+        {
+            Video2ToLoad = GameObject.Find("Loc/Canvas/SecondPanel/SceneToLoad").GetComponent<Text>();
+        }
+
     }
 
     // Start is called before the first frame update
@@ -114,9 +124,16 @@ public class LocationGazeScript : MonoBehaviour
 
             else if (hit.collider.tag == "ShowVideo1")
             {
-                VideoPanel1.SetActive(true);
+                FirstPanel.SetActive(true);
                 Video1Timer = 0.0f;
                 Video1ProgressBar.fillAmount = 0.0f;
+            }
+
+            else if (hit.collider.tag == "ShowVideo2")
+            {
+                SecondPanel.SetActive(true);
+                Video2Timer = 0.0f;
+                Video2ProgressBar.fillAmount = 0.0f;
             }
 
             else if (hit.collider.transform.tag == "WatchVideo1")
@@ -132,6 +149,18 @@ public class LocationGazeScript : MonoBehaviour
                 }
             }
 
+            else if (hit.collider.transform.tag == "WatchVideo2")
+            {
+                Video2Timer += Time.deltaTime;
+                Video2scaleFactor = Video2Timer / delay;
+                Video2ProgressBar.fillAmount = Video2scaleFactor; 
+
+                if (Video2Timer >= delay)
+                {
+                    SceneManager.LoadScene(int.Parse(Video2ToLoad.text));
+                }
+            }
+
             else if (hit.collider.transform.tag == "DontWatch" && GameObject.Find("Loc/Canvas/Video1Panel"))
             {
                 Video1Timer += Time.deltaTime;
@@ -140,7 +169,7 @@ public class LocationGazeScript : MonoBehaviour
 
                 if (Video1Timer >= delay)
                 {
-                    VideoPanel1.SetActive(false);
+                    FirstPanel.SetActive(false);
                 }
                
             }
@@ -148,13 +177,21 @@ public class LocationGazeScript : MonoBehaviour
 
         else
         {
-            MainPanel.SetActive(false);
+            if (MainPanel)
+            {
+                MainPanel.SetActive(false);
+            }
+
             Exit.SetActive(false);
-            VideoPanel1.SetActive(false);
+            FirstPanel.SetActive(false);
+            SecondPanel.SetActive(false);
             timer = 0.0f;
-            Video1Timer = 0.0f; 
+            Video1Timer = 0.0f;
+            Video1ProgressBar.fillAmount = 0.0f;
+            Video2Timer = 0.0f;
+            Video2ProgressBar.fillAmount = 0.0f; 
             ProgressBar.fillAmount = 0.0f;
-            Video1ProgressBar.fillAmount = 0.0f; 
+            
         }
     }
 
