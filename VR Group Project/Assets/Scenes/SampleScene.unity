@@ -2643,9 +2643,10 @@ MonoBehaviour:
   delay: 0
   ProgressBar: {fileID: 0}
   Video1ProgressBar: {fileID: 1587188749}
+  Video2ProgressBar: {fileID: 0}
   MainPanel: {fileID: 0}
   FirstPanel: {fileID: 0}
-  SecondPanel: {fileID: 0}
+  SecondPanel: {fileID: 1325494593}
   Exit: {fileID: 0}
   Video1ToLoad: {fileID: 0}
   Video2ToLoad: {fileID: 0}

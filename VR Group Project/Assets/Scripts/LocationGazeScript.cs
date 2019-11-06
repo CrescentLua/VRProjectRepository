@@ -184,14 +184,13 @@ public class LocationGazeScript : MonoBehaviour
 
             Exit.SetActive(false);
             FirstPanel.SetActive(false);
-            SecondPanel.SetActive(false);
-            timer = 0.0f;
             Video1Timer = 0.0f;
             Video1ProgressBar.fillAmount = 0.0f;
-            Video2Timer = 0.0f;
-            Video2ProgressBar.fillAmount = 0.0f; 
+            timer = 0.0f;
             ProgressBar.fillAmount = 0.0f;
-            
+            SecondPanel.SetActive(false);        
+            Video2Timer = 0.0f;
+            Video2ProgressBar.fillAmount = 0.0f;            
         }
     }
 
