@@ -121,7 +121,7 @@ public class UIGazeScript: MonoBehaviour
         {
             Click.Play();
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene("Location1");
             Debug.Log("Button Pressed!");
             timer = 0.0f;
             TimerText.text = "0.00";

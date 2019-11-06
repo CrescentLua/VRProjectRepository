@@ -761,7 +761,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: '1
+
+'
 --- !u!222 &498382796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2646,7 +2648,7 @@ MonoBehaviour:
   Video2ProgressBar: {fileID: 0}
   MainPanel: {fileID: 0}
   FirstPanel: {fileID: 0}
-  SecondPanel: {fileID: 1325494593}
+  SecondPanel: {fileID: 0}
   Exit: {fileID: 0}
   Video1ToLoad: {fileID: 0}
   Video2ToLoad: {fileID: 0}
