@@ -116,9 +116,14 @@ public class LocationGazeScript : MonoBehaviour
                 scaleFactor = timer / delay;
                 ProgressBar.fillAmount = scaleFactor;
 
-                if (timer >= delay)
+                if (timer >= delay && SceneManager.GetActiveScene().buildIndex < 6)
                 {
                     StartCoroutine(ExitFOV());
+                }    
+
+                else if (timer >= delay && SceneManager.GetActiveScene().buildIndex > 5)
+                {
+                    SceneManager.LoadScene("Introduction");
                 }
             }
 
@@ -159,19 +164,6 @@ public class LocationGazeScript : MonoBehaviour
                 {
                     SceneManager.LoadScene(int.Parse(Video2ToLoad.text));
                 }
-            }
-
-            else if (hit.collider.transform.tag == "DontWatch" && GameObject.Find("Loc/Canvas/Video1Panel"))
-            {
-                Video1Timer += Time.deltaTime;
-                Video1scaleFactor = Video1Timer / delay;
-                Video1ProgressBar.fillAmount = Video1scaleFactor;
-
-                if (Video1Timer >= delay)
-                {
-                    FirstPanel.SetActive(false);
-                }
-               
             }
         } 
 
